@@ -44,7 +44,7 @@
                   </div>
                   <div formArrayName="tiempoActividad">
                     <div *ngFor="let trabajo of tiempoActividad.controls; let idx = index;" [formGroupName]="idx">
-                      <div class="col l12">
+                      <div class="col l12 center-all">
                         <div class="col s12 l5 margin-bottom-100-rem">
                           <label class="text-style cl-primary-color-theme-important">Fecha</label>
                           <label class="primary-form-field width-100">
@@ -116,17 +116,17 @@
               </tr>
             </thead>
             <tbody>
-              <ng-container *ngFor="let item of dataOrganice">
+              <ng-container *ngFor="let item of allActivities">
                 <tr>
                   <td class="text-align-center">{{item.descripcion}}</td>
                   <td class="text-align-center">
-                    <ng-container *ngFor="let it of item.fecha[0]">
-                      <p>{{it}}</p>
+                    <ng-container *ngFor="let it of item.tiempos">
+                      <p>{{it.fecha}}</p>
                     </ng-container>
                   </td>
                   <td class="text-align-center">
-                    <ng-container *ngFor="let it of item.tiempo_gastado[0]">
-                      <p>{{it}}</p>
+                    <ng-container *ngFor="let it of item.tiempos">
+                      <p>{{it.tiempo_gastado}}</p>
                     </ng-container>
                   </td>
                 </tr>

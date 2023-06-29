@@ -27,7 +27,6 @@ export class DashboardComponent implements OnInit {
 
   /** Almacena la data del usuario logueado */
   public allActivities: any = [];
-  public dataOrganice: any = [];
 
   /** Listado de cards a mostrar */
   public listCards = [
@@ -97,7 +96,6 @@ export class DashboardComponent implements OnInit {
     this.activities.getActivities(params).subscribe((response) => {
       if (response['status'] === 1) {
         this.allActivities = response['data'];
-        this.organiceData();
       } else {
         this.toast.setToastPopup('Ha ocurrido un error, comunicate con un asesor', 'danger');
       }
@@ -123,7 +121,6 @@ export class DashboardComponent implements OnInit {
         params.append('id_usuario', localStorage.getItem('id_usuario'));
         params.append('descripcion', this.formCreateAct.value.descripcion);
         params.append('tiempo', JSON.stringify(this.formCreateAct.value.tiempoActividad));
-
         this.activities.save(params).subscribe((response: any) => {
           if (response['status'] === 1) {
             this.getInfo();
@@ -133,6 +130,7 @@ export class DashboardComponent implements OnInit {
           } else {
             this.toast.setToastPopup('Ha ocurrido un error al guardar, comunicate con un asesor.', 'danger');
           }
+          this.tiempoActividad.clear();
         })
       } else {
         this.toast.setToastPopup('El tiempo limite por actividad es 8, favor validar.', 'danger');
@@ -149,37 +147,8 @@ export class DashboardComponent implements OnInit {
     return tiempo;
   }
 
-  /** Organizar la data a mostar */
-  organiceData = () => {
-    let activities = {};
-    this.allActivities.forEach((elm) => {
-      if (!activities[elm.id_actividad])
-        this.dataOrganice.push(activities[elm.id_actividad] = {
-          descripcion: elm.descripcion,
-          tiempo_gastado: [this.getHours(elm.id_actividad)],
-          fecha: [this.getTimes(elm.id_actividad)]
-        })
-    });
-    console.log(this.dataOrganice);
-  }
-
-  /** Filtra las fechas por actividad */
-  getTimes = (id_actividad) => {
-    let aux = this.allActivities.filter(n => n.id_actividad === id_actividad);
-    return aux.map((elm) => { return elm.fecha });
-  }
-
-  /** Sumar horas */
-  getHours = (id_actividad) => {
-    let tiempo_gastado: number = 0;
-    // this.allActivities.filter(n => n.id_actividad === id_actividad).forEach(elm => tiempo_gastado += +elm.tiempo_gastado);
-    // this.allActivities.filter(n => n.id_actividad === id_actividad).map(()=>{return elm.tiempo_gastado})
-    return this.allActivities.filter(n => n.id_actividad === id_actividad).map((elm) => { return elm.tiempo_gastado });
-  }
-
   resetValues = () => {
     this.formCreateAct.reset();
     this.allActivities = [];
-    this.dataOrganice = [];
   }
 }
