@@ -2,7 +2,7 @@
 
 # Clonar especificamente rama f_julian
 
-git clone --branch f_julian https://github.com/julianstt8/manageActiviesFront.git
+git clone https://github.com/julianstt8/front_manageActivities.git
 
 # Instalaciones ANGULAR
 
