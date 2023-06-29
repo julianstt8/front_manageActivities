@@ -1,0 +1,46 @@
+@use "src/styles/theme";
+
+.primary-tooltip {
+  border: 0.06rem solid theme.get-theme-value(theme, senary, border);
+  background: theme.get-theme-value(theme, quaternary, background);
+  box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+  border-radius: 0.26rem;
+  position: absolute;
+  padding: 0.26rem;
+  z-index: 13;
+  & div {
+    color: theme.get-theme-value(theme, septenary, color);
+    font-size: 0.8rem;
+  }
+  &[tooltip-border-direction]::after {
+    border-width: 0.5rem;
+    border-style: solid;
+    position: absolute;
+    content: "";
+  }
+  &[tooltip-border-direction="bottom"]::after {
+    border-color: transparent transparent
+      theme.get-theme-value(theme, quaternary, background) transparent;
+    left: calc(50% - 0.5rem);
+    bottom: 100%;
+  }
+  &[tooltip-border-direction="right"]::after {
+    border-color: transparent
+      theme.get-theme-value(theme, quaternary, background) transparent
+      transparent;
+    bottom: calc(50% - 0.5rem);
+    right: 100%;
+  }
+  &[tooltip-border-direction="left"]::after {
+    border-color: transparent transparent transparent
+      theme.get-theme-value(theme, quaternary, background);
+    bottom: calc(50% - 0.5rem);
+    left: 100%;
+  }
+  &[tooltip-border-direction="top"]::after {
+    border-color: theme.get-theme-value(theme, quaternary, background)
+      transparent transparent transparent;
+    left: calc(50% - 0.5rem);
+    top: 100%;
+  }
+}

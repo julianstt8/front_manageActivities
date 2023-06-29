@@ -1,0 +1,56 @@
+@use "src/styles/theme";
+
+.primary-tab {
+  & .tab-header {
+    position: relative;
+    display: flex;
+    & .tab-item-header {
+      color: theme.get-theme-value(theme, primary, color);
+      padding: 1rem 2rem;
+      text-align: center;
+      font-size: 0.77rem;
+      position: relative;
+
+      &.tab-item-selected,
+      &:hover {
+        background: theme.get-theme-value(theme, senary, background) !important;
+        font-weight: 700;
+        cursor: pointer;
+
+        &::after {
+          width: 100%;
+        }
+      }
+
+      &:not(.tab-item-selected) {
+        background: theme.get-theme-value(theme, primary, background);
+      }
+
+      &::after {
+        background: theme.get-theme-value(palette, primary, background);
+        transition: width 0.3s ease;
+        position: absolute;
+        height: 0.15rem;
+        content: "";
+        z-index: 2;
+        bottom: 0;
+        width: 0;
+        left: 0;
+      }
+    }
+
+    &::after {
+      background:  theme.get-theme-value(theme, secondary, border);
+      position: absolute;
+      height: 0.15rem;
+      content: "";
+      z-index: 1;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+    }
+  }
+  & .tab-body {
+    margin-top: 1rem;
+  }
+}

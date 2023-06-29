@@ -1,0 +1,24 @@
+@use "src/styles/theme";
+
+.primary-separator,
+.secondary-separator {
+  border-top-width: 0.11rem;
+  &.stronger-border {
+    border-top-width: 0.11rem;
+  }
+  &:not(.stronger-border) {
+    border-bottom-width: 0;
+  }
+}
+
+.primary-separator {
+  background-color: theme.get-theme-value(theme, senary, border);
+  border-color: theme.get-theme-value(theme, senary, border);
+  width: 100%;
+  margin: 0;
+}
+
+.secondary-separator {
+  background-color: theme.get-theme-value(theme, thirteenth, complementary);
+  border-color: theme.get-theme-value(theme, thirteenth, complementary);
+}

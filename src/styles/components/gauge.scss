@@ -1,0 +1,93 @@
+@use "src/styles/theme";
+
+.primary-gauge {
+  max-width: 100px;
+  width: 100%;
+  & .gauge-body {
+    border-top-right-radius: 100% 200%;
+    border-top-left-radius: 100% 200%;
+    background: #b4c0be;
+    padding-bottom: 50%;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+
+    & .gauge-fill {
+      background: theme.get-theme-value(palette, primary, background);
+      transition: transform 0.02s ease-out;
+      transform-origin: center top;
+      position: absolute;
+      width: inherit;
+      height: 100%;
+      top: 100%;
+      left: 0;
+    }
+    & .gauge-cover {
+      border-radius: 50%;
+      position: absolute;
+      height: 150%;
+      width: 75%;
+      left: 13%;
+      top: 25%;
+
+      justify-content: center;
+      align-items: center;
+      padding-bottom: 25%;
+      font-size: 1rem;
+      display: flex;
+      color: #fff;
+    }
+  }
+}
+
+.secondary-gauge {
+  max-width: 100px;
+  width: 100%;
+  & .gauge-body {
+    border-top-right-radius: 50% 100%;
+    border-top-left-radius: 50% 100%;
+    background: #b4c0be;
+    padding-bottom: 50%;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+
+    & .gauge-fill {
+      background: theme.get-theme-value(palette, primary, background);
+      transition: transform 0.02s ease-out;
+      transform-origin: center top;
+      position: absolute;
+      width: inherit;
+      height: 100%;
+      top: 100%;
+      left: 0;
+    }
+    & .gauge-cover {
+      border-radius: 50%;
+      position: absolute;
+      height: 188%;
+      width: 94%;
+      left: 3%;
+      top: 6%;
+
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 35%;
+      display: flex;
+      color: #fff;
+
+      & .gauge-text {
+        font-size: 0.7rem;
+        margin: 0.4rem;
+      }
+
+      & .gauge-value {
+        font-size: 1.5rem;
+        margin: 0.4rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,408 @@
+// @import "env";
+// $host: $host;
+
+.ubication-vertical {
+  flex-direction: column !important;
+  display: flex !important;
+  justify-content: center;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.text-align-justify {
+  text-align: justify;
+}
+
+.font-size-smaller {
+  font-size: smaller;
+}
+
+.font-size-inherit {
+  font-size: inherit;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.text-align-right {
+  text-align: right;
+}
+
+.text-align-left {
+  text-align: left;
+  &-important {
+    text-align: left !important;
+  }
+}
+
+.position-absolute {
+  position: absolute;
+}
+
+.object-fit-fill {
+  object-fit: fill;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
+.flex-direction-column {
+  flex-direction: column;
+  &.-important {
+    flex-direction: column !important;
+  }
+}
+
+.flex-direction-row-reverse {
+  flex-direction: row-reverse;
+}
+
+.z-index-1 {
+  z-index: 1;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.display-flex {
+  display: flex;
+  &-important {
+    display: flex !important;
+  }
+}
+
+.vertical-align-middle {
+  vertical-align: middle;
+}
+
+.vertical-align-sub {
+  vertical-align: sub;
+}
+
+.vertical-align-super {
+  vertical-align: super;
+}
+
+.vertical-align-bottom {
+  vertical-align: bottom;
+  &-important {
+    vertical-align: bottom !important;
+  }
+}
+
+.border-color-currentcolor {
+  border-color: currentColor;
+}
+
+.display-inline {
+  display: inline;
+}
+
+.display-inline-block {
+  display: inline-block;
+}
+
+.white-space-nowrap {
+  white-space: nowrap;
+}
+
+.text-transform-capitalize {
+  text-transform: capitalize;
+}
+
+.text-transform-uppercase {
+  text-transform: uppercase;
+}
+
+.text-transform-lowercase {
+  text-transform: lowercase;
+}
+
+.text-transform-none {
+  text-transform: none !important;
+}
+
+.word-break-break-word {
+  word-break: break-word;
+}
+
+.font-weight-lighter {
+  font-weight: lighter;
+}
+
+.font-size-xx-small {
+  font-size: xx-small;
+}
+
+.font-size-x-large {
+  font-size: x-large;
+}
+
+.font-size-large {
+  font-size: large;
+}
+
+.list-style-type-decimal {
+  list-style-type: decimal;
+}
+
+.list-style-position-inside {
+  list-style-position: inside;
+}
+
+.line-height-1 {
+  line-height: 1;
+}
+
+.display-block {
+  display: block;
+}
+
+.text-decoration-underline {
+  text-decoration: underline;
+}
+
+.text-decoration-none {
+  text-decoration: none;
+}
+
+.justify-content-flex-start {
+  justify-content: flex-start;
+}
+
+.justify-content-flex-end {
+  justify-content: flex-end;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.justify-content-space-around {
+  justify-content: space-around;
+}
+
+.justify-content-space-between {
+  justify-content: space-between;
+}
+
+.justify-content-space-evenly {
+  justify-content: space-evenly;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.align-items-flex-end {
+  align-items: flex-end;
+}
+
+.align-self-center {
+  align-self: center;
+}
+
+.align-self-flex-end {
+  align-self: flex-end;
+}
+
+.align-self-flex-start {
+  align-self: flex-start;
+}
+
+.center-all {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.margin-auto {
+  margin: auto;
+}
+
+.flex-wrap-wrap {
+  flex-wrap: wrap;
+}
+
+.display-none {
+  display: none;
+  &-important {
+    display: none !important;
+  }
+}
+
+.border-none {
+  border: none;
+  &-important {
+    border: none !important;
+  }
+}
+
+.pointer-events-none {
+  pointer-events: none;
+}
+
+.border-radius-50 {
+  border-radius: 50%;
+}
+
+.position-fixed {
+  position: fixed;
+}
+
+.display-grid {
+  display: grid;
+}
+
+.background-attachment-fixed {
+  background-attachment: fixed;
+}
+
+.color-currentcolor {
+  color: currentColor;
+  &-important {
+    color: currentColor !important;
+  }
+}
+
+.color-inherit {
+  color: inherit;
+  &-important {
+    color: inherit !important;
+  }
+}
+
+.full {
+  &-width {
+    width: 100%;
+  }
+  &-height {
+    height: 100%;
+  }
+  &-size {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.shadow {
+  box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 8%);
+}
+
+.scroll-behavior-smooth {
+  scroll-behavior: smooth;
+}
+
+@each $selector in (margin, padding) {
+  @each $property in (bottom, right, left, top) {
+    .#{$selector}-#{$property}-0 {
+      #{$selector}-#{$property}: 0;
+      &-important {
+        #{$selector}-#{$property}: 0 !important;
+      }
+    }
+  }
+  .#{$selector}-horizontal-0,
+  .#{$selector}-0 {
+    @extend .#{$selector}-right-0;
+    @extend .#{$selector}-left-0;
+  }
+  .#{$selector}-vertical-0,
+  .#{$selector}-0 {
+    @extend .#{$selector}-bottom-0;
+    @extend .#{$selector}-top-0;
+  }
+  .#{$selector}-horizontal-0-important,
+  .#{$selector}-0-important {
+    @extend .#{$selector}-right-0-important;
+    @extend .#{$selector}-left-0-important;
+  }
+  .#{$selector}-vertical-0-important,
+  .#{$selector}-0-important {
+    @extend .#{$selector}-bottom-0-important;
+    @extend .#{$selector}-top-0-important;
+  }
+}
+
+@each $property in (width, height) {
+  @each $prefix in (min-, "", max-) {
+    @each $values in (0, 10, 25, 50, 75, 90, 100) {
+      .#{$prefix + $property + "-" + $values} {
+        #{$prefix + $property}: #{$values + "%"};
+        &-important {
+          #{$prefix + $property}: #{$values + "%"} !important;
+        }
+      }
+    }
+  }
+}
+
+@each $values in (100, 200, 300, 400, 500, 600, 700, 800) {
+  .font-weight-#{$values} {
+    font-weight: #{$values};
+    &-important {
+      font-weight: #{$values} !important;
+    }
+  }
+}
+
+@each $property in (bottom, right, left, top) {
+  .border-#{$property} {
+    border-#{$property}-style: solid;
+    border-#{$property}-width: 1px;
+    &-important {
+      border-#{$property}-style: solid !important;
+      border-#{$property}-width: 1px !important;
+    }
+  }
+  @each $style in (solid, dotted, dashed) {
+    .border-#{$property}-#{$style} {
+      border-#{$property}-style: #{$style};
+      border-#{$property}-width: 1px;
+      &-important {
+        border-#{$property}-style: #{$style} !important;
+        border-#{$property}-width: 1px !important;
+      }
+    }
+  }
+}
+
+@each $style in (solid, dotted, dashed) {
+  .border-#{$style} {
+    border-style: #{$style};
+    border-width: 1px;
+    &-important {
+      border-style: #{$style} !important;
+      border-width: 1px !important;
+    }
+  }
+}
+
+@each $property in (bottom, right, left, top) {
+  .#{$property}-0 {
+    #{$property}: 0;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

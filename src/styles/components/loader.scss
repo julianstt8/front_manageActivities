@@ -1,0 +1,163 @@
+@use "src/styles/components/typography";
+@use "src/styles/animations";
+@use "src/styles/mixins";
+@use "src/styles/theme";
+
+.loader-content {
+  position: absolute;
+  max-height: 100%;
+  overflow: hidden;
+  max-width: 100%;
+  z-index: 1500;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+
+.loader-opaque-content {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+  &::after {
+    background: theme.get-theme-value(theme, thirteenth, background);
+    position: absolute;
+    height: 100%;
+    opacity: 0.7;
+    content: "";
+    width: 100%;
+    left: 0;
+    top: 0;
+  }
+  & > * {
+    z-index: 1;
+  }
+}
+
+.loader-image-box {
+  position: relative;
+  height: 12.5%;
+  width: 50%;
+}
+
+.loader-original-image {
+  position: relative;
+  width: 100%;
+}
+
+.loader-image-container {
+  @include mixins.generate-compatible-properties(transform, translate(-50%, -50%), webkit, ms);
+  @include mixins.generate-compatible-properties(animation-fill-mode, forwards, webkit);
+  @include mixins.generate-compatible-properties(animation-duration, 1s, webkit);
+  @include mixins.generate-compatible-properties(animation-name, up, webkit);
+  @include mixins.generate-compatible-properties(
+    animation-timing-function,
+    cubic-bezier(0.6, -0.28, 0.74, 0.05),
+    webkit
+  );
+  border-radius: 0.24rem;
+  position: absolute;
+  padding: 0.26rem;
+  width: 30%;
+  left: 50%;
+  top: 50%;
+}
+
+@include mixins.use-keyframes(up) using ($prefix) {
+  to {
+    @include mixins.use-keyframes-with-compatible-properties($prefix, transform, translate(-50%, -150%));
+  }
+}
+
+.loader-text-container {
+  @include mixins.generate-compatible-properties(animation-timing-function, ease-in-out, webkit);
+  @include mixins.generate-compatible-properties(transform, translate(-50%, -50%), webkit, ms);
+  @include mixins.generate-compatible-properties(animation-fill-mode, forwards, webkit);
+  @include mixins.generate-compatible-properties(animation-duration, 1s, webkit);
+  @include mixins.generate-compatible-properties(animation-name, appear, webkit);
+  @include mixins.generate-compatible-properties(animation-delay, 0.75s, webkit);
+  color: theme.get-theme-value(theme, senary, color);
+  border-radius: 0.24rem;
+  position: absolute;
+  opacity: 0;
+  left: 50%;
+  top: 50%;
+}
+
+@include mixins.use-keyframes(appear) using ($prefix) {
+  to {
+    opacity: 1;
+  }
+}
+
+.loader-wrapper {
+  transform: translate(-50%, -50%);
+  position: absolute;
+  display: flex;
+  left: 50%;
+  top: 50%;
+
+  & .loader-wrapper-bullet {
+    margin: 0 0.66rem;
+    &:nth-child(odd) {
+      & .loader-wrapper-circle::after,
+      & .loader-wrapper-circle,
+      & .loader-wrapper-shadow {
+        @include mixins.generate-compatible-properties(animation-delay, 0.1s, webkit);
+      }
+    }
+
+    & .loader-wrapper-circle::after,
+    & .loader-wrapper-circle,
+    & .loader-wrapper-shadow {
+      @include mixins.generate-compatible-properties(animation-iteration-count, infinite, webkit);
+      @include mixins.generate-compatible-properties(animation-timing-function, ease, webkit);
+      @include mixins.generate-compatible-properties(animation-direction, alternate, webkit);
+      @include mixins.generate-compatible-properties(animation-duration, 0.5s, webkit);
+    }
+
+    & .loader-wrapper-circle,
+    & .loader-wrapper-shadow {
+      position: relative;
+      width: 1.3rem;
+    }
+
+    & .loader-wrapper-circle {
+      @include mixins.generate-compatible-properties(animation-name, bouncing, webkit);
+      height: 1.3rem;
+      &::after {
+        @include mixins.generate-compatible-properties(animation-name, shrink, webkit);
+        background: #ffffff;
+        position: absolute;
+        height: 100%;
+        content: "";
+        width: 100%;
+      }
+    }
+
+    & .loader-wrapper-circle::after,
+    & .loader-wrapper-shadow {
+      @include mixins.generate-compatible-properties(transform-origin, 50%, webkit);
+      border-radius: 50%;
+    }
+
+    & .loader-wrapper-shadow {
+      @include mixins.generate-compatible-properties(animation-name, bouncing-shadow, webkit);
+      background-color: rgba(0, 0, 0, 0.5);
+      filter: blur(0.06rem);
+      height: 0.26rem;
+      z-index: -1;
+      top: 4rem;
+    }
+  }
+
+  & .loader-wrapper-text {
+    @include mixins.generate-compatible-properties(transform, translateX(-50%), webkit);
+    white-space: nowrap;
+    position: absolute;
+    color: #ffffff;
+    left: 50%;
+    top: 6rem;
+  }
+}

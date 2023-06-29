@@ -1,0 +1,49 @@
+@use "src/styles/mixins";
+@use "src/styles/theme";
+
+.primary-collapsable {
+  cursor: pointer;
+
+  & .collapsable-icon {
+    color: theme.get-theme-value(theme, primary, color);
+    transition: 0.5s ease;
+
+    &.rotate-icon {
+      -webkit-transform: rotate(180deg);
+      -moz-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+      -o-transform: rotate(180deg);
+      transform: rotate(180deg);
+    }
+  }
+
+  &.activated-collapsable {
+    &.collapsable-icon,
+    & .collapsable-icon {
+      &[collapsable-activated-content]::before {
+        content: attr(collapsable-activated-content);
+      }
+    }
+  }
+  &:not(.activated-collapsable) {
+    &.collapsable-icon,
+    & .collapsable-icon {
+      &[collapsable-content]::before {
+        content: attr(collapsable-content);
+      }
+    }
+  }
+}
+
+.primary-collapsable-content {
+  overflow: hidden;
+  &:not([collapsable-direction="horizontal"]) {
+    transition: max-height 0.2s ease-out;
+    max-height: 0;
+  }
+  &[collapsable-direction="horizontal"] {
+    transition: max-width 0.2s ease-out, min-width 0.2s ease-out;
+    max-width: 0;
+    min-width: 0;
+  }
+}

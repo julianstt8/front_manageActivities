@@ -1,0 +1,67 @@
+<div class="primary-content primary-typography margin-left-100-rem margin-right-100-rem center-all">
+  <div class="l12 margin-top-100-rem">
+    <div class="row" [formGroup]="formLogin">
+      <div class="col s2 m6 margin-top-50-rem">
+        <button class="primary-button button-md margin-vertical-0" (click)="goBack()">Volver</button>
+      </div>
+      <h3 class="title-style cl-primary-color-theme-important text-align-center">Iniciar sesion</h3>
+      <div class="col s12 l12 margin-bottom-100-rem">
+        <label class="text-style cl-primary-color-theme-important">Usuario</label>
+        <label class="primary-form-field width-100">
+          <input type="text" class="primary-input" formControlName="usuario" #usuario>
+          <ng-container [ngTemplateOutlet]="required"></ng-container>
+        </label>
+      </div>
+      <div class="col s12 l12 margin-bottom-100-rem">
+        <label class="text-style cl-primary-color-theme-important">Contraseña</label>
+        <label class="primary-form-field width-100">
+          <input type="password" class="primary-input" formControlName="contraseña" #contraseña>
+          <ng-container [ngTemplateOutlet]="required"></ng-container>
+        </label>
+        <button class="primary-button button-md border-none-important position-relative margin-top-50-rem full-width"
+          (click)="login();">
+          Iniciar sesión
+        </button>
+        <small class="text-style lower-font cl-primary-color-theme-important margin-top-20-rem cursor-pointer"
+          (click)="statusCreateUser = !statusCreateUser">Crear usuario</small>
+
+
+      </div>
+    </div>
+    <ng-container *ngIf="statusCreateUser" [formGroup]="formCreateUser">
+      <div class="primary-card margin-top-100-rem">
+        <h1 class="subtitle-style">Crear usuario</h1>
+        <div class="col s12 l12 margin-bottom-100-rem">
+          <label class="text-style cl-primary-color-theme-important">Nombre completo</label>
+          <label class="primary-form-field width-100">
+            <input type="text" class="primary-input" formControlName="nombre_completo" #nombre_completo>
+            <ng-container [ngTemplateOutlet]="required"></ng-container>
+          </label>
+        </div>
+        <div class="col s12 l12 margin-bottom-100-rem">
+          <label class="text-style cl-primary-color-theme-important">Usuario</label>
+          <label class="primary-form-field width-100">
+            <input type="text" class="primary-input" formControlName="usuario" #usuario>
+            <ng-container [ngTemplateOutlet]="required"></ng-container>
+
+          </label>
+        </div>
+        <div class="col s12 l12 margin-bottom-100-rem">
+          <label class="text-style cl-primary-color-theme-important">Contraseña</label>
+          <label class="primary-form-field width-100">
+            <input type="password" class="primary-input" formControlName="contraseña" #contraseña>
+            <ng-container [ngTemplateOutlet]="required"></ng-container>
+          </label>
+          <button class="primary-button button-md border-none-important position-relative margin-top-50-rem full-width"
+            (click)="createUser();">
+            Crear
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+
+  <ng-template #required>
+    <b class="cl-typographyDanger-background-status">*</b>
+  </ng-template>

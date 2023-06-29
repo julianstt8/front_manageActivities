@@ -1,0 +1,21 @@
+@use "src/styles/viewport";
+@use "src/styles/theme";
+.primary-header {
+    margin: -2rem -2rem 1rem -2rem;
+    padding: 2rem 2rem 1rem 2rem;
+    background-position: center;
+    background-size: cover;
+    & .content-header-image {
+        margin-bottom: 1rem;
+        & img {
+            border-radius: .33rem;
+            width: 90%;
+        }
+    }
+    & .content-header-text {
+        justify-content: center;
+        flex-direction: column;
+        min-height: 8rem;
+        display: flex;
+    }
+}

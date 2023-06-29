@@ -1,0 +1,234 @@
+@use "src/styles/mixins";
+@use "src/styles/theme";
+
+.primary-list {
+  background: theme.get-theme-value(theme, septenary, background);
+  padding-inline-start: 0;
+  list-style: none;
+  @each $var in (left right top bottom) {
+    &.#{$var}-border {
+      border-#{$var}-width: 0.06rem;
+      border-#{$var}-style: solid;
+    }
+  }
+  &.shadowed-list {
+    box-shadow: 0.06rem 0.06rem 0.18rem 0 theme.get-theme-value(theme, septenary, background),
+      -0.06rem 0 0.18rem 0 theme.get-theme-value(theme, septenary, background);
+    -webkit-box-shadow: 0.06rem 0.06rem 0.18rem 0 theme.get-theme-value(theme, septenary, background),
+      -0.06rem 0 0.18rem 0 theme.get-theme-value(theme, septenary, background);
+    -moz-box-shadow: 0.06rem 0.06rem 0.18rem 0 theme.get-theme-value(theme, septenary, background),
+      -0.06rem 0 0.18rem 0 theme.get-theme-value(theme, septenary, background);
+  }
+  &.selectable-list {
+    & .list-item,
+    & li {
+      &:not(.not-selectable-list-item) {
+        cursor: pointer;
+        &:hover,
+        &:focus,
+        &:active,
+        &.item-active {
+          background: theme.get-theme-value(palette, primary, transparent);
+          outline: none;
+        }
+      }
+    }
+  }
+
+  & li,
+  & .list-item {
+    color: theme.get-theme-value(theme, primary, color);
+    transition: all 0.5s ease;
+    background: transparent;
+    font-weight: 500;
+    line-height: 1.2em;
+    font-size: 0.7rem;
+    padding: 0.66rem;
+  }
+  & ul,
+  & .group-item {
+    color: theme.get-theme-value(theme, primary, color);
+    background: transparent;
+    line-height: 1.2em;
+    font-size: 0.73rem;
+    font-weight: 700;
+    padding: 0.66rem;
+    & ~ .list-item,
+    & .list-item {
+      padding: 0.66rem 1.32rem;
+    }
+  }
+}
+
+.secondary-list {
+  margin-block-start: 0.5em;
+  padding-inline-start: 0;
+  margin-block-end: 0.5em;
+  list-style: none;
+  display: flex;
+  &.separated-list {
+    & .list-item,
+    & button,
+    & li {
+      margin: 0.15rem;
+    }
+  }
+  &.selectable-list {
+    & .list-item,
+    & button,
+    & li {
+      cursor: pointer;
+      &:hover,
+      &:focus,
+      &:active,
+      &.item-active {
+        background: theme.get-theme-value(theme, secondary, background);
+        outline: none;
+      }
+    }
+  }
+  &:not(.nowrap-list) {
+    flex-wrap: wrap;
+    & .list-item,
+    & button,
+    & li {
+      flex: 1 1 auto;
+    }
+  }
+  &.nowrap-list {
+    flex-wrap: nowrap;
+    overflow: auto;
+    & .list-item,
+    & button,
+    & li {
+      align-items: center;
+      display: flex;
+    }
+  }
+  & .list-item,
+  & button,
+  & li {
+    background: theme.get-theme-value(theme, tertiary, background);
+    color: theme.get-theme-value(theme, senary, color);
+    transition: all 0.5s ease;
+    font-weight: 500;
+    line-height: 1.2em;
+    text-align: center;
+    font-size: 0.6rem;
+    padding: 0.33rem;
+  }
+}
+
+.primary-list-group {
+  // border: 1px solid theme.get-theme-value(theme, senary, complementary);
+  padding-inline-start: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  list-style: none;
+  display: flex;
+  margin: 0;
+
+  & li {
+    border-color: theme.get-theme-value(theme, senary, complementary);
+    background: theme.get-theme-value(theme, septenary, background);
+    color: theme.get-theme-value(theme, septenary, color);
+    border-width: 1px 0px 1px 1px;
+    transition: all 0.5s ease;
+    border-style: solid;
+    font-size: 0.8rem;
+    padding: 0.5rem;
+
+    &:first-child {
+      border-radius: 0.33rem 0rem 0rem 0.33rem;
+    }
+
+    &:last-child {
+      border-radius: 0rem 0.33rem 0.33rem 0rem;
+      border-width: 1px;
+    }
+
+    &.list-item-selected,
+    &:hover {
+      border: 1px solid theme.get-theme-value(palette, primary, background) !important;
+      background: theme.get-theme-value(palette, primary, background);
+      color: theme.get-theme-value(theme, primary, color);
+      font-weight: 700;
+      cursor: pointer;
+    }
+  }
+}
+
+.tertiary-list {
+  padding-inline-start: 0;
+  list-style: none;
+
+  @each $var in (left right top bottom) {
+    &.#{$var}-border {
+      border-#{$var}-width: 0.06rem;
+      border-#{$var}-style: solid;
+    }
+  }
+
+  &.internal-padding {
+    & li,
+    .list-item {
+      & .list-internal-item {
+        padding: 0.66rem;
+      }
+    }
+  }
+
+  &:not(.internal-padding) {
+    & li,
+    .list-item {
+      padding: 0.66rem;
+    }
+  }
+
+  & li,
+  & .list-item {
+    background: theme.get-theme-value(theme, septenary, background);
+    transition: all 0.5s ease;
+    border-radius: 0.33rem;
+    line-height: 1.2em;
+    font-size: 0.7rem;
+    font-weight: 500;
+    width: 98%;
+  }
+}
+
+.secundary-list-group {
+  padding-inline-start: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  list-style: none;
+  display: flex;
+  margin: 0;
+
+  & li {
+    background: theme.get-theme-value(theme, septenary, background);
+    color: theme.get-theme-value(theme, septenary, color);
+    transition: all 0.5s ease;
+    margin-right: 0.1rem;
+    text-align: center;
+    font-size: 0.8rem;
+    padding: 0.5rem;
+    height: 33px;
+    &.item-orange {
+      background: theme.get-theme-value(status, warning, transparent);
+      color: theme.get-theme-value(status, warning, background);
+    }
+    &.item-danger {
+      background: theme.get-theme-value(status, danger, transparent);
+      color: theme.get-theme-value(status, danger, background);
+    }
+    &.item-warning {
+      background: theme.get-theme-value(status, notices, transparent);
+      color: theme.get-theme-value(status, notices, background);
+    }
+    &.item-success {
+      background: theme.get-theme-value(status, success, transparent);
+      color: theme.get-theme-value(status, success, background);
+    }
+  }
+}

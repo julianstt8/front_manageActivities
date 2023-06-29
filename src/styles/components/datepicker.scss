@@ -1,0 +1,19 @@
+@use "src/styles/theme";
+
+::ng-deep {
+  &.ng-mydp * {
+    font-size: 0.67rem;
+  }
+
+  & .myDpSelector {
+    box-shadow: none !important;
+
+    & .myDpFooterBtn {
+      &::before {
+        margin-right: 0.5rem;
+        content: "Hoy";
+      }
+      cursor: pointer;
+    }
+  }
+}

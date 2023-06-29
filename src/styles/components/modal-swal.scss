@@ -1,0 +1,48 @@
+@use "src/styles/theme";
+
+.btn-cancel,
+.btn-send {
+  border-radius: 0.25rem;
+  padding: 0.6rem 2rem;
+  font-size: 0.95rem;
+  color: #ffffff;
+  font-weight: 600;
+  outline: none;
+  border: none;
+
+  &:hover,
+  &:focus,
+  &:active {
+    transform: scale(1.01, 1.01);
+    cursor: pointer;
+    opacity: 0.9;
+  }
+}
+
+.btn-cancel {
+  background: #3a3a3a;
+  margin-left: 1rem;
+}
+
+.btn-send {
+  background: theme.get-theme-value(palette, primary, background);
+}
+
+.swal2-icon {
+  &.swal2-success {
+    &.swal2-icon-show {
+      & .swal2-success-line-long {
+        color: theme.get-theme-value(status, typographyDanger, background);
+      }
+    }
+  }
+}
+
+.swal2-validation-message {
+  color: theme.get-theme-value(status, typographyDanger, background);
+  background: transparent;
+  font-size: 0.86rem;
+  &::before {
+    background: theme.get-theme-value(status, typographyDanger, background);
+  }
+}

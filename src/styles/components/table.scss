@@ -1,0 +1,134 @@
+@use "src/styles/theme";
+.primary-table,
+.secondary-table {
+  margin-right: auto;
+  border-spacing: 0;
+  margin-left: auto;
+  &.table-settings {
+    & .container-settings {
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      & .item-setting {
+        background: theme.get-theme-value(theme, septenary, background);
+        color: theme.get-theme-value(theme, primary, color);
+        transition: all 0.5s ease;
+        justify-content: center;
+        border-radius: 100%;
+        align-items: center;
+        margin: 0 0.25rem;
+        height: 1.8rem;
+        width: 1.8rem;
+        display: flex;
+        &.item-setting-selected,
+        &:hover {
+          background: theme.get-theme-value(palette, primary, background);
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  &.table-intermittent {
+    & tbody {
+      & tr {
+        &:nth-child(odd) {
+          background: theme.get-theme-value(theme, senary, border);
+          & td {
+            border-bottom: 1px solid
+              theme.get-theme-value(theme, senary, border);
+            border-top: 1px solid theme.get-theme-value(theme, senary, border);
+            &:first-child {
+              border-left: 1px solid
+                theme.get-theme-value(theme, senary, border);
+              border-radius: 0.33rem 0 0 0.33rem;
+            }
+            &:last-child {
+              border-right: 1px solid
+                theme.get-theme-value(theme, senary, border);
+              border-radius: 0 0.33rem 0.33rem 0;
+            }
+          }
+        }
+      }
+    }
+  }
+  &.table-sticky-header {
+    & thead tr {
+      & th {
+        background: theme.get-theme-value(theme, senary, background);
+        position: sticky;
+        top: 0;
+      }
+    }
+  }
+  &.table-item-selected {
+    & i {
+      transition: all 0.5s ease;
+    }
+    & .item-selected {
+      align-items: center;
+      text-align: center;
+      display: flex;
+      & i {
+        color: theme.get-theme-value(palette, primary, background);
+        margin-right: 1rem;
+        font-size: 1rem;
+      }
+    }
+    &:not(.item-selected) {
+      & i {
+        font-size: 0;
+      }
+    }
+  }
+  &:not(.table-intermittent) {
+    & tbody {
+      & tr {
+        background: theme.get-theme-value(theme, senary, border);
+        & td {
+          border-bottom: 1px solid theme.get-theme-value(theme, quinary, border);
+        }
+      }
+    }
+  }
+  & thead {
+    & th {
+      font-weight: 600;
+    }
+  }
+  & th {
+    color: theme.get-theme-value(theme, primary, color);
+    text-align: center;
+  }
+  & td {
+    color: theme.get-theme-value(theme, septenary, color);
+    & .item-success,
+    & .item-warning,
+    & .item-danger {
+      color: theme.get-theme-value(palette, primary, color) !important;
+      border-radius: 0.33rem;
+      margin: 0 0 0.3rem 0;
+      text-align: center;
+      font-weight: 700;
+      padding: 0.2rem;
+    }
+    & .item-danger {
+      background: theme.get-theme-value(status, typographyDanger, background);
+    }
+    & .item-warning {
+      background: theme.get-theme-value(status, warning, background);
+    }
+    & .item-success {
+      background: theme.get-theme-value(status, typographySuccess, background);
+    }
+  }
+  & td,
+  & th {
+    & i {
+      vertical-align: sub;
+      font-size: 0.9rem;
+    }
+    padding: 0.7rem 0.5rem;
+    font-size: 0.7rem;
+  }
+}

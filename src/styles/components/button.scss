@@ -1,0 +1,134 @@
+@use "src/styles/theme";
+
+.primary-button,
+.tertiary-button {
+  border: 0.06rem solid theme.get-theme-value(palette, quaternary, background);
+  color: theme.get-theme-value(palette, quaternary, color);
+  transition: all 0.5s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  justify-content: center;
+  border-radius: 0.25rem;
+  text-decoration: none;
+  align-items: center;
+  text-align: center;
+  line-height: 1rem;
+  font-weight: 600;
+  display: flex;
+  outline: none;
+  &:hover,
+  &:focus,
+  &:active {
+    cursor: pointer;
+    opacity: 0.9;
+  }
+
+  &.button-md {
+    padding: 0.5rem 1rem;
+    font-size: 0.7rem !important;
+  }
+
+  &.button-sm {
+    text-transform: none;
+    letter-spacing: 0rem;
+    padding: 0.4rem 1rem;
+    font-size: 0.65rem;
+    & i {
+      font-size: 0.8rem !important;
+    }
+  }
+
+  &.button-sml {
+    text-transform: none;
+    letter-spacing: 0rem;
+    padding: 0.4rem .8rem;
+    font-size: 0.65rem;
+    & i {
+      font-size: 0.7rem !important;
+    }
+  }
+
+  &:not(.button-md):not(.button-sm):not(.button-sml) {
+    padding: 0.8rem 1rem;
+    font-size: 0.85rem;
+    & i {
+      font-size: 0.9rem !important;
+    }
+  }
+
+  & i {
+    margin-right: 0.3rem;
+  }
+
+  &.hoverable-button {
+    transition: all 125ms ease;
+    position: relative;
+    z-index: 0;
+    &::after {
+      position: absolute;
+      height: 100%;
+      opacity: 0.3;
+      content: "";
+      width: 100%;
+      left: 0;
+      top: 0;
+    }
+    & > * {
+      position: relative;
+      z-index: 1;
+    }
+  }
+}
+
+.primary-button {
+  background: theme.get-theme-value(palette, quaternary, background);
+  &.button-success {
+    background: theme.get-theme-value(status, success, background);
+    border-color: theme.get-theme-value(status, success, background);
+  }
+
+  &.button-danger {
+    background: theme.get-theme-value(status, danger, background);
+    border-color: theme.get-theme-value(status, danger, background);
+  }
+}
+
+.secondary-button {
+  background: theme.get-theme-value(palette, quaternary, background);
+  color: theme.get-theme-value(palette, quaternary, color);
+  border-radius: 0.25rem;
+  text-decoration: none;
+  text-align: center;
+  font-size: 0.85rem;
+  line-height: 1rem;
+  font-weight: 600;
+  padding: 1rem;
+  outline: none;
+  border: none;
+  &:hover,
+  &:focus,
+  &:active {
+    cursor: pointer;
+    opacity: 0.9;
+  }
+}
+
+.tertiary-button {
+  background: none;
+  &:hover {
+    background: theme.get-theme-value(palette, quaternary, transparent);
+  }
+  &.button-success {
+    border-color: theme.get-theme-value(status, success, background);
+    &:hover {
+      background: theme.get-theme-value(status, success, transparent);
+    }
+  }
+
+  &.button-danger {
+    border-color: theme.get-theme-value(status, danger, background);
+    &:hover {
+      background: theme.get-theme-value(status, danger, transparent);
+    }
+  }
+}

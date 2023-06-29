@@ -1,0 +1,147 @@
+<div class="primary-content primary-typography margin-left-100-rem margin-right-100-rem">
+  <div class="l12 display-flex justify-content-space-between">
+    <h3 class="title-style margin-top-50-rem cl-quaternary-background-palette-important margin-left-100-rem ">Welcome to
+      Prueba, {{nameUser}}</h3>
+    <div class="col s2 m6 margin-top-50-rem">
+      <button class="primary-button button-md" (click)="login('logOut')">
+        Cerrar sesión
+      </button>
+    </div>
+  </div>
+
+  <div class="row">
+    <ng-container *ngFor="let card of listCards; index as i">
+      <div class="col s12 m6 l6 margin-bottom-100-rem">
+        <div class="primary-card display-flex align-items-center border-card hoverable-card"
+          (click)="idCardSelected = card.id" [ngStyle]="{'border-color':card.color + '66',
+          background: card.color + '66' }">
+          <i [class]="card.icon + ' margin-right-100-rem'" [ngStyle]="{ color: card.color }"></i>
+          <p class="text-style margin-vertical-0 lower-font font-weight-700-important cl-primary-color-theme-important">
+            {{ card.name }}
+          </p>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <div class="row display-flex margin-top-50-rem">
+    <div class="col s12 m12 l12">
+      <div class="primary-card display-flex flex-direction-column">
+        <!-- Crear actividades -->
+        <ng-container *ngIf="idCardSelected == 0">
+          <h1 class="subtitle-style text-align-center">
+            Crear actividades
+          </h1>
+          <div class="primary-card margin-top-100-rem">
+            <div class="row">
+              <div class="col s12 l6">
+                <h1 class="subtitle-style margin-left-100-rem">Nueva actividad</h1>
+                <form [formGroup]="formCreateAct">
+                  <div class="col s12 l12 margin-bottom-100-rem">
+                    <label class="text-style cl-primary-color-theme-important">Descripción</label>
+                    <label class="primary-form-field width-100">
+                      <input type="text" class="primary-input" formControlName="descripcion" #descripcion>
+                    </label>
+                  </div>
+                  <div formArrayName="tiempoActividad">
+                    <div *ngFor="let trabajo of tiempoActividad.controls; let idx = index;" [formGroupName]="idx">
+                      <div class="col l12">
+                        <div class="col s12 l5 margin-bottom-100-rem">
+                          <label class="text-style cl-primary-color-theme-important">Fecha</label>
+                          <label class="primary-form-field width-100">
+                            <input type="date" class="primary-input" formControlName="fecha" #fecha>
+                          </label>
+                        </div>
+                        <div class="col s12 l5 margin-bottom-100-rem">
+                          <label class="text-style cl-primary-color-theme-important">Tiempo</label>
+                          <label class="primary-form-field width-100">
+                            <input type="number" class="primary-input" formControlName="tiempo" #tiempo>
+                          </label>
+                        </div>
+                        <div class="col l2">
+                          <button class="primary-button button-md" (click)="borrarTiempoActividad(idx)">
+                            Eliminar
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <button class="primary-button button-sm margin-top-50-rem margin-left-100-rem"
+                      (click)="anadirtiempoActividad()">
+                      Agregar tiempo
+                    </button>
+
+                  </div>
+                </form>
+                <button class="primary-button full-width margin-top-50-rem" (click)="saveActivities()">
+                  Crear
+                </button>
+              </div>
+              <div class="col s12 l6">
+                <h1 class="subtitle-style margin-left-100-rem">Lista de actividades</h1>
+                <table class="primary-table table-intermittent full-width scroll-box" style="max-height:22rem">
+                  <thead>
+                    <tr>
+                      <th class="text-align-center">Actividades registradas</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <ng-container *ngFor="let item of allActivities">
+                      <tr>
+                        <td class="text-align-center">{{item.descripcion}}</td>
+                      </tr>
+                    </ng-container>
+                    <ng-container *ngIf="allActivities.length === 0">
+                      <tr>
+                        <td class="text-align-center" colspan="3">
+                          <h1>No hay informacion</h1>
+                        </td>
+                      </tr>
+                    </ng-container>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <!-- Ver actividades -->
+        <ng-container *ngIf="idCardSelected == 1">
+          <h1 class="subtitle-style text-align-center">
+            Ver actividades
+          </h1>
+          <table class="primary-table table-intermittent full-width scroll-box" style="max-height:22rem">
+            <thead>
+              <tr>
+                <th class="text-align-center">Actividad</th>
+                <th class="text-align-center">Fecha</th>
+                <th class="text-align-center">Tiempo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let item of dataOrganice">
+                <tr>
+                  <td class="text-align-center">{{item.descripcion}}</td>
+                  <td class="text-align-center">
+                    <ng-container *ngFor="let it of item.fecha[0]">
+                      <p>{{it}}</p>
+                    </ng-container>
+                  </td>
+                  <td class="text-align-center">
+                    <ng-container *ngFor="let it of item.tiempo_gastado[0]">
+                      <p>{{it}}</p>
+                    </ng-container>
+                  </td>
+                </tr>
+              </ng-container>
+              <ng-container *ngIf="allActivities.length === 0">
+                <tr>
+                  <td class="text-align-center" colspan="3">
+                    <h1>No hay informacion</h1>
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

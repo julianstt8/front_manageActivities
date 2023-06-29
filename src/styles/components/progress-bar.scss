@@ -1,0 +1,22 @@
+@use "src/styles/theme";
+.primary-progress-bar {
+  align-items: center;
+  display: flex;
+  & .container-bar {
+    background-color: theme.get-theme-value(theme, septenary, background);
+    border-radius: 0.33rem;
+    margin-right: 0.5rem;
+    width: 11rem;
+    & div {
+      background-color: theme.get-theme-value(palette, primary, background);
+      transition: width 0.5s ease;
+      border-radius: 0.33rem;
+      height: 0.4rem;
+    }
+  }
+  & .container-text {
+    & p {
+      margin: 0;
+    }
+  }
+}

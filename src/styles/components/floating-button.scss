@@ -1,0 +1,36 @@
+@use "src/styles/theme";
+
+.primary-container-floating-button {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 2;
+
+  & .item-floating-button {
+    color: theme.get-theme-value(palette, primary, color);
+    justify-content: center;
+    margin-bottom: 0.5rem;
+    border-radius: 100%;
+    align-items: center;
+    font-size: 1.2rem;
+    height: 2.5rem;
+    width: 2.5rem;
+    display: flex;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &.item-pdf {
+      background: theme.get-theme-value(palette, primary, background);
+    }
+
+    &.item-excel {
+      background: theme.get-theme-value(status, success, background);
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

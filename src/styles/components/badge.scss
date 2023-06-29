@@ -1,0 +1,20 @@
+@use "src/styles/theme";
+
+.primary-badge {
+  background: theme.get-theme-value(palette, primary, transparent);
+  color: theme.get-theme-value(theme, primary, color);
+  font-weight: 700 !important;
+  border-radius: 0.33rem;
+  font-size: 0.7rem;
+  padding: 0 0.5rem;
+  margin: 0;
+}
+
+.primary-badge-info {
+  background: theme.get-theme-value(palette, primary, transparent);
+  color: theme.get-theme-value(theme, primary, color);
+  font-weight: 700 !important;
+  padding: 0.15rem 0.5rem;
+  border-radius: 0.33rem;
+  cursor: pointer;
+}

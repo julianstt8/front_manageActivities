@@ -1,0 +1,109 @@
+@use "src/styles/components/animations";
+@use "src/styles/viewport";
+@use "src/styles/mixins";
+@use "src/styles/theme";
+
+.modal-surface.modal-surface-active {
+  background: rgba(15, 16, 19, 0.75);
+  position: fixed;
+  height: 100%;
+  z-index: 999;
+  width: 100%;
+  left: 0;
+  top: 0;
+  & .modal-content {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    &.animated-modal-content {
+      @extend .scale-to-full-size;
+    }
+    & > .primary-modal {
+      @include mixins.generate-compatible-properties(transform, translate(-50%, -50%), webkit, ms);
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      & .modal-body-style {
+        max-height: 80vh;
+        overflow: auto;
+      }
+    }
+  }
+}
+
+.modal-surface:not(.modal-surface-active) {
+  & > .primary-modal,
+  & {
+    display: none;
+  }
+}
+
+.primary-modal {
+  box-shadow: 0 0.23rem 1.3rem 0.16rem rgba(46, 34, 34, 0.08);
+  background-color: transparent;
+  --mdc-shape-medium: 0.16rem;
+  border-radius: 0.16rem;
+  max-width: 90vw;
+  & .modal-header-style {
+    background: theme.get-theme-value(theme, quaternary, background);
+    color: theme.get-theme-value(theme, primary, color);
+    position: relative;
+    font-size: 1.5rem;
+    padding: {
+      right: calc((var(--gutter, 0.5rem) * 5) + 0.5em);
+      bottom: calc(var(--gutter, 0.5rem) * 2);
+      left: calc(var(--gutter, 0.5rem) * 2);
+      top: calc(var(--gutter, 0.5rem) * 2);
+    }
+    & .modal-close-icon-style {
+      font-size: 0.5em;
+      top: 50%;
+    }
+  }
+  & .modal-body-style {
+    background: theme.get-theme-value(theme, primary, background);
+    font-size: 0.73rem;
+    position: relative;
+    padding: 1rem;
+    @include viewport.use-viewport(tablet, viewport.get-property-value(tablet, "max-width"), null) {
+      @include viewport.use-viewport(phone, null) {
+        padding: 1rem;
+      }
+    }
+    & .modal-close-icon-style {
+      font-size: 1em;
+      top: 5%;
+    }
+  }
+  & .modal-close-icon-style {
+    @include mixins.generate-compatible-properties(transform, translateY(-50%), webkit, ms);
+    color: theme.get-theme-value(theme, septenary, color);
+    right: calc(var(--gutter, 0.5rem) * 3);
+    position: absolute;
+    cursor: pointer;
+    z-index: 2;
+    &:hover,
+    &:active,
+    &:focus {
+      color: theme.get-theme-value(theme, secondary, color);
+    }
+  }
+}
+
+@media only screen and (min-width: 601px) {
+  .primary-modal {
+    width: 70%;
+    &.modal-md {
+      width: 55%;
+    }
+    &.modal-sm {
+      width: 40%;
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .primary-modal {
+    width: 90%;
+  }
+}

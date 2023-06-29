@@ -1,0 +1,147 @@
+@use "src/styles/mixins";
+@use "src/styles/theme";
+
+.primary-card {
+  background: theme.get-theme-value(theme, senary, background);
+  border-radius: 0.33rem;
+  &:not(.no-card-padding) {
+    padding: calc(var(--gutter, 0.5rem) * 2);
+  }
+  &:not(.not-shadowed-card) {
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+  }
+  &.hoverable-card-shadow {
+    &:hover {
+      box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+      border: 1px solid theme.get-theme-value(theme, senary, border);
+    }
+  }
+  &.hoverable-card {
+    &:hover {
+      filter: brightness(1.1);
+      cursor: pointer;
+    }
+  }
+  &.border-card {
+    border: 1px solid theme.get-theme-value(theme, senary, border);
+  }
+}
+
+.secondary-card {
+  background: theme.get-theme-value(theme, primary, background);
+  box-shadow: 0 0.23rem 1.3rem 0.16rem rgba(0, 0, 0, 0.08);
+  border-radius: 0.16rem;
+  position: relative;
+  & .card-title-style {
+    color: theme.get-theme-value(theme, primary, color);
+    padding: calc(var(--gutter, 0.5rem) * 1) calc(var(--gutter, 0.5rem) * 2);
+    font-size: 0.86rem;
+    text-align: right;
+    font-weight: 700;
+  }
+  & .card-body-style {
+    color: theme.get-theme-value(theme, eleventh, color);
+    font-weight: 500;
+    font-size: 0.86rem;
+  }
+  & .card-sparkline-style {
+    height: 3rem;
+    width: 100%;
+  }
+  & .floating-button-style {
+    @include mixins.generate-compatible-properties(transform, translateY(30%), webkit, ms);
+    background: theme.get-theme-value(theme, duodenary, background);
+    color: theme.get-theme-value(theme, duodenary, color);
+    transition: all 0.5s ease;
+    border-radius: 50%;
+    position: absolute;
+    font-size: 1.8rem;
+    font-weight: 700;
+    padding: 0.16rem;
+    right: 0.66rem;
+    bottom: 0;
+    &:active,
+    &:hover,
+    &:focus {
+      background: theme.get-theme-value(theme, thirteenth, color);
+      color: theme.get-theme-value(theme, thirteenth, background);
+    }
+  }
+}
+
+.tertiary-card {
+  transition: all 0.25s linear;
+  border-radius: 0.16rem;
+  position: relative;
+  & img {
+    display: block;
+    width: 100%;
+  }
+  & .card-content {
+    padding: calc(var(--gutter, 0.5rem) * 2);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+  &.hoverable-card {
+    &:hover {
+      @include mixins.generate-compatible-properties(transform, scale(1.02), webkit, ms);
+      filter: brightness(1.1);
+      cursor: pointer;
+    }
+  }
+}
+
+.quaternary-card {
+  background: theme.get-theme-value(theme, senary, background);
+  border-radius: 0.33rem;
+
+  & .header-card {
+    color: theme.get-theme-value(theme, primary, color);
+    border-radius: 0.33rem 0.333rem 0 0;
+    text-align: center;
+    font-weight: 600;
+    padding: 1rem;
+  }
+  & .body-card {
+    &:not(.no-card-padding) {
+      padding: calc(var(--gutter, 0.5rem) * 2);
+    }
+    &:not(.not-shadowed-card) {
+      box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+    }
+  }
+  & .footer-card {
+    background: theme.get-theme-value(theme, secondary, background);
+    color: theme.get-theme-value(theme, primary, color);
+    padding: 0.5rem 1rem;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+}
+
+.quinary-card {
+  background: theme.get-theme-value(theme, septenary, background);
+  border-radius: 0.33rem;
+  &:not(.no-card-padding) {
+    padding: calc(var(--gutter, 0.5rem) * 2);
+  }
+  &:not(.not-shadowed-card) {
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%);
+  }
+  &.hoverable-card {
+    &:hover {
+      filter: brightness(1.1);
+      cursor: pointer;
+    }
+  }
+  &.border-card {
+    border: 1px solid theme.get-theme-value(theme, senary, border);
+  }
+}
+
+.sixth-card {
+  width: calc(100% / 5 - 2%) !important;
+}
