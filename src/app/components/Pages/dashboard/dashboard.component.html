@@ -131,13 +131,11 @@
                   </td>
                 </tr>
               </ng-container>
-              <ng-container *ngIf="allActivities.length === 0">
-                <tr>
-                  <td class="text-align-center" colspan="3">
-                    <h1>No hay informacion</h1>
-                  </td>
-                </tr>
-              </ng-container>
+              <tr *ngIf="allActivities.length === 0">
+                <td class="text-align-center" colspan="3">
+                  <h1>No hay informacion</h1>
+                </td>
+              </tr>
             </tbody>
           </table>
         </ng-container>
